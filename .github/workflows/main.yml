@@ -36,6 +36,15 @@ jobs:
           pip install lxml
           pip install requests
           pip install GitPython
+          pip install pandas
 
       - name: Run scrapping code
         run: python gau1.py
+
+      - name: Commit CSV File
+        run: |
+          git config --global user.email "ndinnemukhethwa562@gmail.com"
+          git config --global user.name "Ndinne"
+          git add all.csv
+          git commit -m "Add data.csv"
+          git push        
