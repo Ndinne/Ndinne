@@ -36,6 +36,12 @@ jobs:
           pip install lxml
           pip install requests
           pip install GitPython
+          pip install regex
+          pip install azure-storage-blob
+          pip install pandas
+          pip install aiohttp
+          pip install asyncio
+          pip install aiohttp_proxy
 
       - name: Run scrapping code
         run: python gau1.py
