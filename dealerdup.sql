@@ -1,12 +1,12 @@
-	DECLARE @BatchSize INT = 10;
+DECLARE @BatchSize INT = 10;
 	DECLARE @RowCount INT = 1;
 	WHILE @RowCount > 0
 	BEGIN
 
 		UPDATE Snapfactauto_25_01
-		SET Suburb = SA.Suburb,
-		    Region = SA.Region,
-		    Province = SA.Province
+		SET Suburb = SA.Suburb
+		    --Region = SA.Region,
+		    --Province = SA.Province
 		FROM Snapfactauto_25_01 AS S
 		INNER JOIN autocopyPROVINCE AS SA ON S.dealership = SA.Dealership
 		WHERE SA.Dealership != 'Unavailable' AND S.Suburb IS NULL;
