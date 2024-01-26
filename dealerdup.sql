@@ -1,3 +1,8 @@
+	UPDATE Snapfactauto_25_01
+	SET Suburb = SA.Suburb, Region = SA.Region, Province = SA.Province
+	FROM autocopyPROVINCE AS SA
+	INNER JOIN autocopyPROVINCE AS DD ON SA.dealership = DD.Dealership
+	WHERE SA.dealership != 'Unavailable';
 
 	UPDATE Snapfactauto_25_01
 	SET Suburb = SA.Suburb, Region = SA.Region, Province = SA.Province
