@@ -6,7 +6,7 @@
 		SET Suburb = SA.Suburb, Region = SA.Region, Province = SA.Province
 		FROM autocopyPROVINCE AS SA
 		INNER JOIN autocopyPROVINCE AS DD ON SA.dealership = DD.Dealership
-		WHERE SA.dealership != 'Unavailable' and DD.suburb is null;
+		WHERE SA.dealership != 'Unavailable' and Snapfactauto_25_01.suburb is null;
 	
 	    SET @RowCount = @@ROWCOUNT;
 	END;
