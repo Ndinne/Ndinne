@@ -1,45 +1,33 @@
-name: try
+name: Execute dealerdup
+
 on:
-  #push: 
   #schedule:
-    #- cron: "0/15 1,3,5,7,9,13,11,15,2,4,6,8,10,12,14,16,18,19,21,20,22,00 * * *"
-  
+    #- cron: "20 22/24 * * *"
+  push:
+      
+ 
+
 jobs:
   RunScript:
     runs-on: ubuntu-latest
-    concurrency: my-concurrency-group
+    concurrency: my-concurrency-group1
     timeout-minutes: 4000
-
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '12' # Specify the desired Node.js version
+        
+    
 
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.7'
-
-      - name: Install dependencies
+      - name: Execute SQL Commands
         run: |
-          python -m pip install --upgrade pip
-          pip install beautifulsoup4
-          pip install pyodbc
-          pip install regex
-          pip install lxml
-          pip install requests
-          pip install GitPython
-          pip install regex
-          pip install azure-storage-blob
-          pip install pandas
-          pip install aiohttp
-          pip install asyncio
-          pip install aiohttp_proxy
-
-      - name: Run scrapping code
-        run: python gau1.py
+          # Install SQL Server command-line tools
+          #apt-get update
+          #apt-get install -y mssql-tools unixodbc-dev
+          # Use a command-line SQL client to execute SQL commands
+          sqlcmd -S sql-cars-autotader.database.windows.net -d sqldb-cars-autotrader -U Canvas -P Dut950505 -i dealerdup.sql
+          
