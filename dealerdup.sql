@@ -9,20 +9,20 @@ BEGIN
     PRINT 'Updating records for ' + CONVERT(VARCHAR, @CurrentDate);
 
     UPDATE TOP (@BatchSize) Snapfactauto_25_01
-    SET Dealer_ID = 
+    SET Snapfactauto_25_01.Dealer_ID = 
         CASE 
-            WHEN Dealership = 'Unavailable' THEN '1807'
-            ELSE ISNULL([Dim Dealer1].Dealer_ID, Dealer_ID) -- Update with [Dim Dealer1].Dealer_ID if not NULL
+            WHEN Snapfactauto_25_01.Dealership = 'Unavailable' THEN '1807'
+            ELSE ISNULL([Dim Dealer1].Dealer_ID, Snapfactauto_25_01.Dealer_ID) -- Update with [Dim Dealer1].Dealer_ID if not NULL
         END,
-        VehicleID = 
+        Snapfactauto_25_01.VehicleID = 
         CASE 
-            WHEN Dealership = 'Unavailable' THEN Autocopyprovince.vehid
-            ELSE ISNULL(Autocopyprovince.vehid, VehicleID) -- Update with Autocopyprovince.vehid if not NULL
+            WHEN Snapfactauto_25_01.Dealership = 'Unavailable' THEN Autocopyprovince.vehid
+            ELSE ISNULL(Autocopyprovince.vehid, Snapfactauto_25_01.VehicleID) -- Update with Autocopyprovince.vehid if not NULL
         END,
-        RegionID = 
+        Snapfactauto_25_01.RegionID = 
         CASE 
-            WHEN Dealership = 'Unavailable' THEN Autocopyprovince.REGID
-            ELSE ISNULL([Dim Dealer1].RegionID, RegionID) -- Update with [Dim Dealer1].RegionID if not NULL
+            WHEN Snapfactauto_25_01.Dealership = 'Unavailable' THEN Autocopyprovince.REGID
+            ELSE ISNULL([Dim Dealer1].RegionID, Snapfactauto_25_01.RegionID) -- Update with [Dim Dealer1].RegionID if not NULL
         END
     FROM (
         SELECT *
@@ -30,8 +30,8 @@ BEGIN
         WHERE CONVERT(DATE, [snap date]) = @CurrentDate -- Filter records for current date
     ) AS Snapfactauto_25_01
     LEFT JOIN Autocopyprovince ON Snapfactauto_25_01.Car_ID = Autocopyprovince.Car_ID
-    LEFT JOIN [Dim Dealer1] ON Snapfactauto_25_01.Dealership = [Dim Dealer1].DealershipName
-    WHERE Snapfactauto_25_01.Dealer_ID IS NULL OR Snapfactauto_25_01.VehicleID IS NULL OR Snapfactauto_25_01.RegionID IS NULL;
+    LEFT JOIN [Dim Dealer1] ON Snapfactauto_25_01.Dealership = [Dim Dealer1].DealershipName;
+    --WHERE Snapfactauto_25_01.Dealer_ID IS NULL OR Snapfactauto_25_01.VehicleID IS NULL OR Snapfactauto_25_01.RegionID IS NULL;
 
     SET @CurrentDate = DATEADD(DAY, 1, @CurrentDate); -- Move to the next day
 END
