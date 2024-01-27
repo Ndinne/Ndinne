@@ -1,4 +1,4 @@
-select * into snapfactauto_25_01_Copy from snapfactauto_25_01_View 
+--select * into snapfactauto_25_01_Copy from snapfactauto_25_01_View 
 
 
 --DECLARE @BatchSize INT = 10;
@@ -6,13 +6,13 @@ select * into snapfactauto_25_01_Copy from snapfactauto_25_01_View
 --	WHILE @RowCount > 0
 --	BEGIN
 
-	--	UPDATE Snapfactauto_25_01
-	--	SET Suburb = SA.Suburb
-		    --Region = SA.Region,
-		    --Province = SA.Province
-	--	FROM Snapfactauto_25_01 AS S
-	--	INNER JOIN autocopyPROVINCE AS SA ON S.dealership = SA.Dealership
-	--	WHERE SA.Dealership != 'Unavailable' AND S.Suburb IS NULL;
+		UPDATE Snapfactauto_25_01
+		SET Suburb = SA.Suburb
+		    Region = SA.Region,
+		    Province = SA.Province
+		FROM Snapfactauto_25_01 AS S
+		INNER JOIN autocopyPROVINCE AS SA ON S.dealership = SA.Dealership
+		WHERE SA.Dealership != 'Unavailable' AND S.Suburb IS NULL and S.[snap date] < '2023-07-23';
 
 	--    SET @RowCount = @@ROWCOUNT;
 	--END;
