@@ -7,7 +7,7 @@
 --	BEGIN
 
 		UPDATE Snapfactauto_25_01
-		SET Suburb = SA.Suburb
+		SET Suburb = SA.Suburb,
 		    Region = SA.Region,
 		    Province = SA.Province
 		FROM Snapfactauto_25_01 AS S
