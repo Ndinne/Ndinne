@@ -1,40 +1,42 @@
-DECLARE @StartDate DATE = '2023-07-18';
-DECLARE @EndDate DATE = GETDATE(); -- Today's date
-DECLARE @BatchSize INT = 100000; -- Adjust batch size as needed
+delete FROM Snapfactauto_25_01  WHERE [snap date] BETWEEN '2023-08-01' AND '2023-08-11';
 
-DECLARE @CurrentDate DATE = @StartDate;
+--DECLARE @StartDate DATE = '2023-07-18';
+--DECLARE @EndDate DATE = GETDATE(); -- Today's date
+--DECLARE @BatchSize INT = 100000; -- Adjust batch size as needed
 
-WHILE @CurrentDate <= @EndDate
-BEGIN
-    PRINT 'Updating records for ' + CONVERT(VARCHAR, @CurrentDate);
+--DECLARE @CurrentDate DATE = @StartDate;
 
-    UPDATE TOP (@BatchSize) Snapfactauto_25_01
-    SET Snapfactauto_25_01.Dealer_ID = 
-        CASE 
-            WHEN Snapfactauto_25_01.Dealership = 'Unavailable' THEN '1807'
-            ELSE ISNULL([Dim Dealer1].Dealer_ID, Snapfactauto_25_01.Dealer_ID) -- Update with [Dim Dealer1].Dealer_ID if not NULL
-        END,
-        Snapfactauto_25_01.VehicleID = 
-        CASE 
-            WHEN Snapfactauto_25_01.Dealership = 'Unavailable' THEN Autocopyprovince.vehid
-            ELSE ISNULL(Autocopyprovince.vehid, Snapfactauto_25_01.VehicleID) -- Update with Autocopyprovince.vehid if not NULL
-        END,
-        Snapfactauto_25_01.RegionID = 
-        CASE 
-            WHEN Snapfactauto_25_01.Dealership = 'Unavailable' THEN Autocopyprovince.REGID
-            ELSE ISNULL([Dim Dealer1].RegionID, Snapfactauto_25_01.RegionID) -- Update with [Dim Dealer1].RegionID if not NULL
-        END
-    FROM (
-        SELECT *
-        FROM Snapfactauto_25_01
-        WHERE CONVERT(DATE, [snap date]) = @CurrentDate -- Filter records for current date
-    ) AS Snapfactauto_25_01
-    LEFT JOIN Autocopyprovince ON Snapfactauto_25_01.Car_ID = Autocopyprovince.Car_ID
-    LEFT JOIN [Dim Dealer1] ON Snapfactauto_25_01.Dealership = [Dim Dealer1].DealershipName;
+--WHILE @CurrentDate <= @EndDate
+--BEGIN
+ --   PRINT 'Updating records for ' + CONVERT(VARCHAR, @CurrentDate);
+
+ --   UPDATE TOP (@BatchSize) Snapfactauto_25_01
+ --   SET Snapfactauto_25_01.Dealer_ID = 
+ --       CASE 
+ --           WHEN Snapfactauto_25_01.Dealership = 'Unavailable' THEN '1807'
+ --           ELSE ISNULL([Dim Dealer1].Dealer_ID, Snapfactauto_25_01.Dealer_ID) -- Update with [Dim Dealer1].Dealer_ID if not NULL
+ --       END,
+  --      Snapfactauto_25_01.VehicleID = 
+  --      CASE 
+  --          WHEN Snapfactauto_25_01.Dealership = 'Unavailable' THEN Autocopyprovince.vehid
+  --          ELSE ISNULL(Autocopyprovince.vehid, Snapfactauto_25_01.VehicleID) -- Update with Autocopyprovince.vehid if not NULL
+  --      END,
+   --     Snapfactauto_25_01.RegionID = 
+   --     CASE 
+          --  WHEN Snapfactauto_25_01.Dealership = 'Unavailable' THEN Autocopyprovince.REGID
+          --  ELSE ISNULL([Dim Dealer1].RegionID, Snapfactauto_25_01.RegionID) -- Update with [Dim Dealer1].RegionID if not NULL
+       -- END
+   -- FROM (
+       -- SELECT *
+      --  FROM Snapfactauto_25_01
+      --  WHERE CONVERT(DATE, [snap date]) = @CurrentDate -- Filter records for current date
+   -- ) AS Snapfactauto_25_01
+  --  LEFT JOIN Autocopyprovince ON Snapfactauto_25_01.Car_ID = Autocopyprovince.Car_ID
+  --  LEFT JOIN [Dim Dealer1] ON Snapfactauto_25_01.Dealership = [Dim Dealer1].DealershipName;
     --WHERE Snapfactauto_25_01.Dealer_ID IS NULL OR Snapfactauto_25_01.VehicleID IS NULL OR Snapfactauto_25_01.RegionID IS NULL;
 
-    SET @CurrentDate = DATEADD(DAY, 1, @CurrentDate); -- Move to the next day
-END
+--    SET @CurrentDate = DATEADD(DAY, 1, @CurrentDate); -- Move to the next day
+--END
 
 
 
