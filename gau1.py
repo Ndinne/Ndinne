@@ -42,7 +42,7 @@ def get_urls():
     data1 = pd.read_csv(data)
 
     # Select the first column for the specified range of rows
-    selected_rows = data1.iloc[0:1999, 0]
+    selected_rows = data1.iloc[:, 0]
     return selected_rows
 
 
