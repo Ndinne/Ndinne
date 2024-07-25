@@ -212,8 +212,10 @@ try:
             check_in_run_count += 1
             if request_count % 20 == 0:
                 print("Sleeping for 5 seconds...")
-                time.sleep(50)
+                time.sleep(50)            
+            if request_count % 100 == 0:
                 ingest_data(all_data)
+                print("data ingested...")
                 all_data = []
 
 finally:
