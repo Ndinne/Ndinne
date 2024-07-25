@@ -13,6 +13,7 @@ import re
 from sqlalchemy import create_engine, text
 import warnings
 warnings.filterwarnings("ignore")
+#
 
 # Set up Chrome options
 chrome_options = Options()
