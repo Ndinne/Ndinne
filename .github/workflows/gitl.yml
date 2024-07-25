@@ -21,13 +21,17 @@ jobs:
         with:
           node-version: '12' # Specify the desired Node.js version
         
-    
-
-      - name: Execute SQL Commands
+      - name: Install dependencies
         run: |
-          # Install SQL Server command-line tools
-          #apt-get update
-          #apt-get install -y mssql-tools unixodbc-dev
-          # Use a command-line SQL client to execute SQL commands
-          sqlcmd -S sql-cars-autotader.database.windows.net -d sqldb-cars-autotrader -U Canvas -P Dut950505 -i dealerdup.sql
+          python -m pip install --upgrade pip
+          pip install selenium beautifulsoup4 pandas sqlalchemy pyodbc webdriver-manager
+  
+      - name: Install Chrome WebDriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-chromedriver    
+
+      - name: Execute main code
+        run: |
+          python Urls.py
           
