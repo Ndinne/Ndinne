@@ -10,7 +10,7 @@ on:
 jobs:
   RunScript:
     runs-on: ubuntu-latest
-    concurrency: my-concurrency-group1
+    concurrency: my-concurrency-group2
     timeout-minutes: 4000
 
     steps:
