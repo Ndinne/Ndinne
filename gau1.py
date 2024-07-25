@@ -33,7 +33,7 @@ from io import BytesIO
 from azure.storage.blob import BlobClient
 
 def get_urls():
-    sas_url = f"https://stautotrader.blob.core.windows.net/run/car_links.csv?sv=2021-10-04&st=2023-10-16T16%3A15%3A06Z&se=2030-10-17T16%3A15%3A00Z&sr=c&sp=racwdxltf&sig=w00AJeguSxlLi%2F9%2FiCWZZd%2Bx8ZHy3GGQJOFawOy3im8%3D"
+    sas_url = f"https://stautotrader.blob.core.windows.net/properties/Listingids.csv?sv=2021-10-04&ss=btqf&srt=sco&st=2023-10-17T07%3A39%3A17Z&se=2030-10-18T07%3A39%3A00Z&sp=rwdxftlacup&sig=%2BTFZttmuMZLkl%2Bq%2Bf2t%2FPNBSJkWUzw52PPp1sL9X8Wk%3D"
     client = BlobClient.from_blob_url(sas_url)
     blob = client.download_blob()
 
