@@ -1,9 +1,11 @@
 name: Execute 2
 
 on:
-  #schedule:
+  schedule:
     #- cron: "20 22/24 * * *"
-  push:
+    - cron:  "40 20,2,8,14 * * *"
+
+  #push:
       
  
 
