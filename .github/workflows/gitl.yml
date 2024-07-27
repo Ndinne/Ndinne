@@ -2,7 +2,7 @@ name: Execute dealerdup
 
 on:
   schedule:
-   - cron:  "40 20,2,8,14 * * *"
+   - cron:  "50 */3 * * *"
   #push:
       
  
