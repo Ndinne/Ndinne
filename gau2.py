@@ -211,7 +211,7 @@ try:
 
             request_count += 1
             check_in_run_count += 1
-            if request_count % 20 == 0:
+            if request_count % 20 == 0 or request_count == len(all_listing_ids_final) :
                 ingest_data(all_data)
                 print("data ingested...")
                 time.sleep(70) 
