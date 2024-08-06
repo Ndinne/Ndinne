@@ -185,10 +185,9 @@ def scrape_airbnb(id, check_in, check_out):
     wait = WebDriverWait(driver, 80)
     print(driver.page_source) 
     driver.implicitly_wait(20)  
-    main_body_xpath = '//*[@id="react-application"]'
-    driver.implicitly_wait(10)  
+    main_body_xpath = '//*[@id="react-application"]' 
     main_body_element = wait.until(EC.presence_of_element_located((By.XPATH, main_body_xpath)))
-    time.sleep(6)
+    time.sleep(10)
 
     main_body_html = main_body_element.get_attribute('outerHTML')
     soup = BeautifulSoup(main_body_html, 'html.parser')
