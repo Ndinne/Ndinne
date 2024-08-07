@@ -182,9 +182,9 @@ def scrape_airbnb(id, check_in, check_out):
     url = f"https://www.airbnb.co.za/rooms/{id}?adults=1&category_tag=Tag%3A8678&enable_m3_private_room=true&photo_id=1602362717&search_mode=regular_search&source_impression_id=p3_1721650674_P36bK5Ps7ufayXNj&previous_page_section_name=1000&federated_search_id=9cc4e6a6-d201-4efc-b0a6-142e51c608da&guests=1&check_in={check_in_str}&check_out={check_out_str}"
     driver.get(url)
 
-    wait = WebDriverWait(driver, 80)
+    wait = WebDriverWait(driver, 60)
     print(driver.page_source) 
-    driver.implicitly_wait(20)  
+    #driver.implicitly_wait(20)  
     main_body_xpath = '//*[@id="react-application"]' 
     main_body_element = wait.until(EC.presence_of_element_located((By.XPATH, main_body_xpath)))
     time.sleep(10)
