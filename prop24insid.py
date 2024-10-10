@@ -481,8 +481,8 @@ if run_no>0:
         asyncio.run(main())
 
 #trigger
-if run_no<max_runs:
-    token = 'glptt-e067c3c51ace8207de3e14d4f27ada4ca113ef53'
-    response = requests.post(f'https://gitlab.com/api/v4/projects/62400499/ref/main/trigger/pipeline?token={token}')        
+#if run_no<max_runs:
+ #   token = 'glptt-e067c3c51ace8207de3e14d4f27ada4ca113ef53'
+  #  response = requests.post(f'https://gitlab.com/api/v4/projects/62400499/ref/main/trigger/pipeline?token={token}')        
     
     
