@@ -32,4 +32,4 @@ jobs:
 
       - name: Execute main code
         run: |
-          python property24insid.py
+          python prop24insid.py.py
