@@ -35,14 +35,19 @@ def run_number_retry():
 
     client = BlobClient.from_blob_url(sas_url)
 
-    with open("run_number_retry.csv", "wb") as f:
-        data = client.download_blob()
-        data_run = pd.read_csv(data)
+    try:
+        with open("run_number_retry.csv", "wb") as f:
+            data = client.download_blob()
+            data_run = pd.read_csv(data)
 
-    if len(data_run) == 0:
-        run_retry = 0
-    else:
-        run_retry = data_run.iloc[0, 0]
+        if len(data_run) == 0:
+            run_retry = 0
+        else:
+            run_retry = data_run.iloc[0, 0]
+    except:   
+        run_retry=0     
+            
+        
 
     return run_retry
 
