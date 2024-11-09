@@ -23,7 +23,7 @@ def get_last_page():
     return last_page
 
 def run_number_retry():
-    sas_url= f"https://autotraderstorage.blob.core.windows.net/run/run_number_retry.csv??sv=2023-01-03&st=2024-11-09T12%3A40%3A19Z&se=2025-01-10T12%3A40%3A00Z&sr=c&sp=racwdl&sig=%2Fxu30BxMkElHgeUln1U2nsAA1lKmisegS132qLonoMs%3D"
+    sas_url= f"https://autotraderstorage.blob.core.windows.net/run/run_number_retry.csv?sv=2023-01-03&st=2024-11-09T12%3A40%3A19Z&se=2025-01-10T12%3A40%3A00Z&sr=c&sp=racwdl&sig=%2Fxu30BxMkElHgeUln1U2nsAA1lKmisegS132qLonoMs%3D"
 
     client = BlobClient.from_blob_url(sas_url)
 
@@ -80,7 +80,7 @@ def reset_run_retry():
     client.upload_blob(run_csv_retry, overwrite=True)
 
 def reset_page():
-    sas_url= f"https://autotraderstorage.blob.core.windows.net/page/page.csv??sv=2023-01-03&st=2024-11-09T12%3A41%3A49Z&se=2024-12-31T12%3A41%3A00Z&sr=c&sp=racwdl&sig=wqW5hc7il9v46zDGDJembwEBe%2F7wIha7D%2BL7uXfHZPo%3D"
+    sas_url= f"https://autotraderstorage.blob.core.windows.net/page/page.csv?sv=2023-01-03&st=2024-11-09T12%3A41%3A49Z&se=2024-12-31T12%3A41%3A00Z&sr=c&sp=racwdl&sig=wqW5hc7il9v46zDGDJembwEBe%2F7wIha7D%2BL7uXfHZPo%3D"
     last_page = [100]
 
     pd_page = pd.DataFrame(last_page)
@@ -92,7 +92,7 @@ def reset_page():
     client.upload_blob(page_csv, overwrite=True)
 
 def new_page_number():
-    sas_url= f"https://autotraderstorage.blob.core.windows.net/page/page.csv??sv=2023-01-03&st=2024-11-09T12%3A41%3A49Z&se=2024-12-31T12%3A41%3A00Z&sr=c&sp=racwdl&sig=wqW5hc7il9v46zDGDJembwEBe%2F7wIha7D%2BL7uXfHZPo%3D"
+    sas_url= f"https://autotraderstorage.blob.core.windows.net/page/page.csv?sv=2023-01-03&st=2024-11-09T12%3A41%3A49Z&se=2024-12-31T12%3A41%3A00Z&sr=c&sp=racwdl&sig=wqW5hc7il9v46zDGDJembwEBe%2F7wIha7D%2BL7uXfHZPo%3D"
     
     last_page = [(get_last_scraped_page()-11) + 100]
 
@@ -122,7 +122,7 @@ def new_run_number():
     client.upload_blob(run_csv, overwrite=True)
 
 def new_run_number_retry():
-    sas_url= f"https://autotraderstorage.blob.core.windows.net/run/run_number_retry.csv??sv=2023-01-03&st=2024-11-09T12%3A40%3A19Z&se=2025-01-10T12%3A40%3A00Z&sr=c&sp=racwdl&sig=%2Fxu30BxMkElHgeUln1U2nsAA1lKmisegS132qLonoMs%3D"
+    sas_url= f"https://autotraderstorage.blob.core.windows.net/run/run_number_retry.csv?sv=2023-01-03&st=2024-11-09T12%3A40%3A19Z&se=2025-01-10T12%3A40%3A00Z&sr=c&sp=racwdl&sig=%2Fxu30BxMkElHgeUln1U2nsAA1lKmisegS132qLonoMs%3D"
     
     run_number_1 = run_number_retry() + 1
 
@@ -139,7 +139,7 @@ def new_run_number_retry():
     client.upload_blob(run_csv, overwrite=True)
 
 def get_last_scraped_page():
-    sas_url= f"https://autotraderstorage.blob.core.windows.net/page/page.csv??sv=2023-01-03&st=2024-11-09T12%3A41%3A49Z&se=2024-12-31T12%3A41%3A00Z&sr=c&sp=racwdl&sig=wqW5hc7il9v46zDGDJembwEBe%2F7wIha7D%2BL7uXfHZPo%3D"
+    sas_url= f"https://autotraderstorage.blob.core.windows.net/page/page.csv?sv=2023-01-03&st=2024-11-09T12%3A41%3A49Z&se=2024-12-31T12%3A41%3A00Z&sr=c&sp=racwdl&sig=wqW5hc7il9v46zDGDJembwEBe%2F7wIha7D%2BL7uXfHZPo%3D"
     
     client = BlobClient.from_blob_url(sas_url)
 
