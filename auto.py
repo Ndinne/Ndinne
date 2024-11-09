@@ -327,9 +327,9 @@ if __name__ == "__main__":
         reset_run_retry()
         quit()
     else:
-        if len(data_frame) == 2000:
+        if len(data_frame) >= 2000:
             car_data_csv = data_frame.to_csv(encoding = "utf-8", index= False)
-            sas_url= f"https://autotraderstorage.blob.core.windows.net/cardata/car_data_{run_number()}.csv?sv=2023-01-03&st=2024-11-09T12%3A34%3A15Z&se=2025-06-26T12%3A34%3A00Z&sr=c&sp=racwdl&sig=1h4aVM%2FuNibKPF8CmO3ki1EzCOjha0BQdp4j3F6rJBQ%3D"
+            sas_url= f"https://autotraderstorage.blob.core.windows.net/cardata/car_data_{run_number()}.csv?sv=2023-01-03&st=2024-11-09T13%3A36%3A00Z&se=2025-04-03T13%3A36%3A00Z&sr=c&sp=racwdl&sig=U4cQpKBe4Rgk6BvdOcrakFgZU5FiibBkEbTqIYic0UE%3D"
             client = BlobClient.from_blob_url(sas_url)
             client.upload_blob(car_data_csv, overwrite=True)
 
@@ -339,7 +339,7 @@ if __name__ == "__main__":
 
         elif len(data_frame) > 0 and int(limit) in range(int(start_page), int(last_page+1)):
             car_data_csv = data_frame.to_csv(encoding = "utf-8", index= False)
-            sas_url= f"https://autotraderstorage.blob.core.windows.net/cardata/car_data_{run_number()}.csv?sv=2023-01-03&st=2024-11-09T12%3A34%3A15Z&se=2025-06-26T12%3A34%3A00Z&sr=c&sp=racwdl&sig=1h4aVM%2FuNibKPF8CmO3ki1EzCOjha0BQdp4j3F6rJBQ%3D"
+            sas_url= f"https://autotraderstorage.blob.core.windows.net/cardata/car_data_{run_number()}.csv?sv=2023-01-03&st=2024-11-09T13%3A36%3A00Z&se=2025-04-03T13%3A36%3A00Z&sr=c&sp=racwdl&sig=U4cQpKBe4Rgk6BvdOcrakFgZU5FiibBkEbTqIYic0UE%3D"
             client = BlobClient.from_blob_url(sas_url)
             client.upload_blob(car_data_csv, overwrite=True)
 
