@@ -11,14 +11,22 @@ def get_last_page():
     sas_url= f"https://autotraderstorage.blob.core.windows.net/lastpage/last_page.csv?sv=2023-01-03&st=2024-11-09T12%3A38%3A33Z&se=2025-01-09T12%3A38%3A00Z&sr=c&sp=rawdl&sig=1vipjr7uZyYC8KYzv5viMRwgVlj7f9PkejeF7MKaXuo%3D"
     client = BlobClient.from_blob_url(sas_url)
 
-    with open("last_page.csv", "wb") as f:
-        data = client.download_blob()
-        data_last_page = pd.read_csv(data)
 
-    if len(data_last_page)==0:
-        last_page=4080
-    else:    
-        last_page = data_last_page.iloc[0, 0]
+        
+    try:
+        with open("last_page.csv", "wb") as f:
+            data = client.download_blob()
+            data_last_page = pd.read_csv(data)
+
+        if len(data_last_page)==0:
+            last_page=4080
+        else:    
+            last_page = data_last_page.iloc[0, 0]
+
+    except :
+            # If blob not found, set page to the default value
+        last_page = 4080        
+        
 
     return last_page
 
@@ -143,14 +151,24 @@ def get_last_scraped_page():
     
     client = BlobClient.from_blob_url(sas_url)
 
-    with open("page.csv", "wb") as f:
-        data = client.download_blob()
-        data1 = pd.read_csv(data)
+    try:
+        with open("page.csv", "wb") as f:
+            # Try to download the blob
+            data = client.download_blob()
+            data.download_to_stream(f)
         
-        if len(data1)==0:
-            page=100
+        # Load data into a DataFrame
+        data1 = pd.read_csv("page.csv")
+        
+        # Set page based on contents of data1
+        if len(data1) == 0:
+            page = 100
         else:
             page = data1.iloc[0, 0]
+
+    except :
+        # If blob not found, set page to the default value
+        page = 100
 
     return page
 
