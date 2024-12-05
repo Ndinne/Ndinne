@@ -63,12 +63,13 @@ def generate_check_dates():
     start_month = (current_date.month % 12) + 1
     start_day = current_date.day
 
+    # Generate check-in dates
     check_in_dates = [
-        datetime(start_year, start_month, start_day),
-        datetime(start_year + (start_month + 3 - 1) // 12, (start_month + 3 - 1) % 12 + 1, 1),
-        datetime(start_year + (start_month + 6 - 1) // 12, (start_month + 6 - 1) % 12 + 1, 1),
-        datetime(start_year + (start_month + 9 - 1) // 12, (start_month + 9 - 1) % 12 + 1, 1),
-        datetime(start_year + (start_month + 9 - 1) // 12, (start_month + 9 - 1) % 12 + 1, 1)
+        datetime(start_year + (start_month - 1) // 12, (start_month - 1) % 12 + 1, start_day),
+        datetime(start_year + (start_month + 2 - 1) // 12, (start_month + 2 - 1) % 12 + 1, 1),
+        datetime(start_year + (start_month + 5 - 1) // 12, (start_month + 5 - 1) % 12 + 1, 1),
+        datetime(start_year + (start_month + 8 - 1) // 12, (start_month + 8 - 1) % 12 + 1, 1),
+        datetime(start_year + (start_month + 11 - 1) // 12, (start_month + 11 - 1) % 12 + 1, 1),
     ]
 
     check_out_dates = [date + timedelta(days=2) for date in check_in_dates]
