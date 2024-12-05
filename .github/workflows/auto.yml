@@ -1,8 +1,8 @@
 name: auto
 
-on:
+#on:
 
-  push:
+  #push:
       
  
 
