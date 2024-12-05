@@ -59,7 +59,8 @@ def ingest_data(all_data):
 def generate_check_dates():
     current_date = datetime.now()
     start_year = current_date.year
-    start_month = current_date.month + 1
+    #start_month = current_date.month + 1
+    start_month = (current_date.month % 12) + 1
     start_day = current_date.day
 
     check_in_dates = [
